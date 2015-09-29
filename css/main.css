@@ -1,3 +1,5 @@
+p { margin: 0;}
+
 /* Shoping window */
 
 .shoping {
@@ -48,12 +50,13 @@
 .option-bar .show:focus, .option-bar .show:hover {
     float: left;
     background-color: #333333;
-    color: black;
     margin: 8px 0px 0px 30px;
     color: #FFFFFF;
 }
 
 #cart-button {
+    background-color: #333333;
+    color: #FFFFFF;
     float: right;
     margin-right: 25px;
     height: 35px;
