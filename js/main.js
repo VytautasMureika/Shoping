@@ -1,8 +1,11 @@
 $(document).ready( function () {
     
-    getItemList(); // makes an array from localStorage
+    getItemList(); // makes an array from localStorage objects
+    
     printItemList(); // shows information of array from localStorage
+    
     cartList();
+    
     $('#list').on('click', function () {
         $('.item-box').removeClass('big').addClass('list');
     });
@@ -21,6 +24,8 @@ $(document).ready( function () {
         $(this).toggleClass('highlighted');        
     });
 });
+
+// global variables...
 
 var $itemArray = [];
 var $cart = [];
@@ -62,28 +67,28 @@ function printItemList () {
     })
 }
 
-// Function updates cart information 
-//      in $('#total-price') total price section
+// Function updates cart information in $('#total-price') section
 
 function updateCart () {
     
     var $item = $(this).attr('rel');
     var $price = 0;
     
-    // puts element in cart
+    // puts object in $cart
     $.each( $itemArray, function (index, val) {
         if (this.preke === $item) {
             $cart.push(this);
         } 
     })
-        
+    
+    // counts total price amount
     $.each($cart, function (index, val) {
         $price += Number($cart[index].kaina);
     });
        
     $countAllItems = $cart.length;
         
-    $('#total-price').html('<p>Swords in cart: ' + $countAllItems + ' Total: ' + $price.toFixed(2) + ' Eu <p>' );
+    $('#total-price').html('<p>Swords in cart: ' + $countAllItems + ' Total: ' + $price.toFixed(2) + ' Eu </p>' );
         
     $(this).addClass('sold');
     
@@ -95,7 +100,7 @@ function updateCart () {
 
 function cartList () {
        
-    var $modalBody = $('.category-menu');
+    var $modalBody = $('.modal-content');
         
     $modalBody.text('');
 
@@ -104,20 +109,24 @@ function cartList () {
             
         var $itemInArray = $itemArray[index].preke;
         var $itemPrice = $itemArray[index].kaina;
+        var $itemData = $itemArray[index].aprasymas;
         var $count = 0;
         
+        // counts each object in $cart array
+        //  (* how many particular objects is in the $cart array *)
         $.each( $cart, function (index, val) {
             if ( $cart[index].preke === $itemInArray) {
                 $count += 1;
             } 
         });
         
+        // 
         if ( $count > 0 ) {
-            $modalBody.append( "<p>Preke " + $itemInArray + '. Krepselyje: ' + $count 
-                              + "<span rel='" + $itemInArray + "' class='x'> X </span></p><p> Vieneto kaina: " 
-                              + $itemPrice + '</p>');
+            $modalBody.append( "<div class='container'>"
+                              + "<h4>Preke " + $itemInArray + '. Krepselyje: ' + $count + "</h4>" 
+                              + "<p> Vieneto kaina: " + $itemPrice + ". Prekes aprasymas: " + $itemData + "</p>" 
+                              + "<p><span rel='" + $itemInArray + "' class='x'> X </span></div>"); 
         }
-        
     });
     
     $('.x').on('click', deleItemFromCart);

@@ -19,7 +19,6 @@
         <div class="container">
             
             <!-- div shows list of $cart array... -->
-            <div class="category-menu list"></div>
             
             <div class="items-list">
                 
@@ -34,7 +33,7 @@
                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                     </button>
                                         
-                    <button id="cart-button" type="button" class="btn btn-default show" aria-label="Left Align">
+                    <button id="cart-button" type="button" class="btn btn-default show" data-toggle="modal" data-target=".bs-example-modal-lg" aria-label="Left Align">
                         <p id="total-price">Cart </p>
                     </button>
                     
@@ -47,12 +46,21 @@
         </div>
     </div>       
 
-        
+    <!-- Large modal -->
+    
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/localStorage.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/localStorage.js"></script>
     <script src="js/main.js"></script>
 </body>
     
